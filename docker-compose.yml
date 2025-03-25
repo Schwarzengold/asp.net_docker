@@ -1,0 +1,27 @@
+
+services:
+  webmenu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webmenu_app
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=DockerDBN;User Id=sa;Password=300388Lia;TrustServerCertificate=True
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: webmenu_db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=300388Lia
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
