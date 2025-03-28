@@ -15,6 +15,7 @@ using Web_Menu.Models;
 using WebMenu.DataAccess.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("http://0.0.0.0:80");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
